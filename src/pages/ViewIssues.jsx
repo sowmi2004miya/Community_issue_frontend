@@ -24,7 +24,7 @@ export default function ViewIssues() {
 
   const fetchIssues = async () => {
     try {
-        const res = await fetch("http://localhost:5000/api/issues");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/issues`);
         const data = await res.json();
         setIssues(data);
     } catch (error) {
@@ -35,7 +35,7 @@ export default function ViewIssues() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this issue?")) return;
     try {
-        await fetch(`http://localhost:5000/api/issues/${id}`, { method: "DELETE" });
+        await fetch(`${import.meta.env.VITE_API_URL}/api/issues/${id}`, { method: "DELETE" });
         fetchIssues(); 
     } catch (error) {
         console.error("Error deleting issue:", error);
@@ -49,7 +49,7 @@ export default function ViewIssues() {
 
   const handleUpdate = async (id) => {
     try {
-        await fetch(`http://localhost:5000/api/issues/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/issues/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(editData),

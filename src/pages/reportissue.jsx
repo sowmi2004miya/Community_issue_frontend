@@ -20,7 +20,7 @@ export default function ReportIssue() {
     const issueData = { title, description, category };
 
     try {
-      const response = await fetch("http://localhost:5000/api/issues", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/issues`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(issueData),
